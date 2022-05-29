@@ -73,7 +73,7 @@ class RecordScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: ListView.builder(
-          physics: const BouncingScrollPhysics(),
+          physics: const ClampingScrollPhysics(),
           scrollDirection: Axis.vertical,
           itemCount: feed.length,
           itemBuilder: (context, index) {

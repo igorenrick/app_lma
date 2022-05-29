@@ -1,31 +1,70 @@
+import 'package:app_lma/models/chemical_material.dart';
 import 'package:app_lma/widgets/action_bar.dart';
 import 'package:app_lma/widgets/action_bar_button.dart';
+import 'package:app_lma/widgets/cabinet_card.dart';
 import 'package:app_lma/widgets/header_section.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class CabinetScreen extends StatelessWidget {
+class CabinetScreen extends StatefulWidget {
   const CabinetScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    List<ActionBarButton> actions = [
-      ActionBarButton(
-        label: 'Adicionar',
-        onPressed: () {},
-      ),
-    ];
-    List<Widget> feed = [
-      const HeaderSection(
-        title: 'Armário',
-        backgroundColor: Color.fromARGB(255, 93, 153, 150),
-      ),
+  State<CabinetScreen> createState() => _CabinetScreenState();
+}
+
+class _CabinetScreenState extends State<CabinetScreen> {
+  List<ActionBarButton> actions = [
+    ActionBarButton(
+      label: 'Adicionar',
+      onPressed: () {},
+    ),
+  ];
+
+  List<Widget> feed = [
+    const HeaderSection(
+      title: 'Armário',
+      backgroundColor: Color.fromARGB(255, 93, 153, 150),
+    ),
+  ];
+
+  Future<List<ChemicalMaterial>> _getMaterial() async {
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    List<ChemicalMaterial> materials = [];
+    await db.collection('cabinet').get().then((event) {
+      for (var doc in event.docs) {
+        ChemicalMaterial material = ChemicalMaterial.fromJson(doc.data());
+        material.id = doc.id;
+        materials.add(material);
+      }
+    });
+    return materials;
+  }
+
+  void _buildFeed() async {
+    feed.add(
       ActionBar(
         actions: actions,
         backgroundColor: const Color.fromARGB(255, 24, 77, 74),
       ),
-    ];
+    );
 
+    await _getMaterial().then((materials) {
+      for (ChemicalMaterial material in materials) {
+        feed.add(CabinetCard(chemicalMaterial: material));
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    _buildFeed();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: false,
       backgroundColor: Colors.white,
@@ -49,7 +88,7 @@ class CabinetScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: ListView.builder(
-          physics: const BouncingScrollPhysics(),
+          physics: const ClampingScrollPhysics(),
           scrollDirection: Axis.vertical,
           itemCount: feed.length,
           itemBuilder: (context, index) {
