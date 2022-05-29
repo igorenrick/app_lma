@@ -1,3 +1,4 @@
+import 'package:app_lma/screens/cabinet/cabinet_screen.dart';
 import 'package:app_lma/screens/record/record_screen.dart';
 import 'package:app_lma/widgets/dashboard_button.dart';
 import 'package:app_lma/widgets/profile_button.dart';
@@ -23,19 +24,26 @@ class DashboardScreen extends StatelessWidget {
               children: [
                 DashboardButton(
                   title: 'Armário',
-                  label: 'Ver tudo',
+                  label: '',
                   backgroundColor: const Color.fromARGB(255, 93, 153, 150),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const CabinetScreen(),
+                      ),
+                    );
+                  },
                 ),
                 DashboardButton(
                   title: 'Horário',
-                  label: 'Ver mais',
+                  label: '',
                   backgroundColor: const Color.fromARGB(255, 24, 77, 74),
                   onPressed: () {},
                 ),
                 DashboardButton(
                   title: 'Registro',
-                  label: 'Controlar',
+                  label: '',
                   backgroundColor: const Color.fromARGB(255, 19, 62, 59),
                   onPressed: () {
                     Navigator.push(

@@ -22,7 +22,7 @@ class DashboardButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(0),
         ),
-        padding: const EdgeInsets.fromLTRB(24, 36, 24, 36),
+        padding: const EdgeInsets.fromLTRB(24, 42, 24, 42),
         primary: backgroundColor,
       ),
       child: Row(

@@ -13,13 +13,16 @@ class ActionBarButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(24, 0, 24, 0),
-      child: Text(
-        label,
-        style: const TextStyle(
-          color: Colors.white,
-          fontFamily: 'Roboto',
-          fontWeight: FontWeight.w400,
-          fontSize: 16,
+      child: GestureDetector(
+        onTap: onPressed,
+        child: Text(
+          label,
+          style: const TextStyle(
+            fontFamily: 'Roboto',
+            fontWeight: FontWeight.w400,
+            fontSize: 16,
+            color: Colors.white,
+          ),
         ),
       ),
     );
