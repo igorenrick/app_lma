@@ -1,3 +1,5 @@
+import 'package:app_lma/models/user.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +11,7 @@ class AuthException implements Exception {
 class AuthService extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   User? user;
+  LMAUser? lmaUser;
   bool isLoading = true;
 
   AuthService() {
@@ -23,8 +26,22 @@ class AuthService extends ChangeNotifier {
     });
   }
 
-  _getUser() {
+  _getUser() async {
     user = _auth.currentUser;
+    if (_auth.currentUser.toString() != 'null') {
+      LMAUser newUser = LMAUser('', '', '', '', '', false, '', Timestamp(0, 0));
+      FirebaseFirestore db = FirebaseFirestore.instance;
+      await db
+          .collection('users')
+          .where('authId', isEqualTo: _auth.currentUser!.uid)
+          .get()
+          .then((event) {
+        newUser = LMAUser.fromJson(event.docs[0].data());
+      });
+      lmaUser = newUser;
+    } else {
+      lmaUser = null;
+    }
     notifyListeners();
   }
 

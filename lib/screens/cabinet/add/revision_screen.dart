@@ -1,3 +1,4 @@
+import 'package:app_lma/screens/cabinet/add/add_confirmation_screen.dart';
 import 'package:app_lma/widgets/revision_item.dart';
 import 'package:app_lma/widgets/square_button.dart';
 import 'package:flutter/material.dart';
@@ -92,7 +93,23 @@ class RevisionScreen extends StatelessWidget {
             ),
             SquareButton(
               label: 'Adicionar',
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AddConfirmationScreen(
+                      CAS: CAS,
+                      name: name,
+                      LMAId: LMAId,
+                      type: type,
+                      suplier: suplier,
+                      supervised: supervised,
+                      initialAmount: initialAmount,
+                      buyNotification: buyNotification,
+                    ),
+                  ),
+                );
+              },
               backgroundColor: const Color.fromARGB(255, 93, 153, 150),
             ),
           ],

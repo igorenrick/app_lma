@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class User {
+class LMAUser {
   late String id;
   late String authId;
   final String registration;
@@ -12,7 +12,7 @@ class User {
   final Timestamp createdAt;
   late String token;
 
-  User(
+  LMAUser(
     this.id,
     this.authId,
     this.registration,
@@ -23,7 +23,7 @@ class User {
     this.createdAt,
   );
 
-  User.fromJson(Map<String, dynamic> json)
+  LMAUser.fromJson(Map<String, dynamic> json)
       : id = json['id'].toString() == 'null' ? '' : json['id'],
         authId = json['authId'].toString() == 'null' ? '' : json['authId'],
         registration = json['registration'].toString() == 'null'
@@ -37,8 +37,7 @@ class User {
             json['attribution'].toString() == 'null' ? '' : json['attribution'],
         createdAt = json['createdAt'].toString() == 'null'
             ? Timestamp(0, 0)
-            : Timestamp(json['createdAt']['_seconds'],
-                json['createdAt']['_nanoseconds']);
+            : json['createdAt'];
 
   String getFullName() {
     return '$name $surname';

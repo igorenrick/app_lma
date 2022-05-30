@@ -1,14 +1,18 @@
 import 'package:app_lma/screens/cabinet/cabinet_screen.dart';
+import 'package:app_lma/screens/profile/profile_screen.dart';
 import 'package:app_lma/screens/record/record_screen.dart';
+import 'package:app_lma/services/auth_service.dart';
 import 'package:app_lma/widgets/dashboard_button.dart';
 import 'package:app_lma/widgets/profile_button.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    AuthService auth = Provider.of<AuthService>(context);
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -16,8 +20,17 @@ class DashboardScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ProfileButton(
-              label: 'AC',
-              onPressed: () {},
+              label: auth.lmaUser.toString() == 'null'
+                  ? ''
+                  : '${auth.lmaUser!.name.substring(0, 1)}${auth.lmaUser!.surname.substring(0, 1)}',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ProfileScreen(),
+                  ),
+                );
+              },
               backgroundColor: const Color.fromARGB(255, 126, 205, 201),
             ),
             Column(

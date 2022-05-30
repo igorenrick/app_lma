@@ -28,7 +28,7 @@ class _CabinetScreenState extends State<CabinetScreen> {
   Future<List<ChemicalMaterial>> _getMaterial() async {
     FirebaseFirestore db = FirebaseFirestore.instance;
     List<ChemicalMaterial> materials = [];
-    await db.collection('cabinet').get().then((event) {
+    await db.collection('cabinet').orderBy('name').get().then((event) {
       for (var doc in event.docs) {
         ChemicalMaterial material = ChemicalMaterial.fromJson(doc.data());
         material.id = doc.id;
