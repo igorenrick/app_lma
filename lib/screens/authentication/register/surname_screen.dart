@@ -107,7 +107,7 @@ class _SurnameScreenState extends State<SurnameScreen> {
                       hintText: 'Meu sobrenome',
                       hintStyle: TextStyle(
                         color: Color.fromARGB(255, 142, 142, 147),
-                        fontFamily: 'Rubik',
+                        fontFamily: 'Roboto',
                         fontWeight: FontWeight.w400,
                       ),
                     ),

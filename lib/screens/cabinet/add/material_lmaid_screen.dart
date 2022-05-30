@@ -1,16 +1,22 @@
-import 'package:app_lma/screens/authentication/register/email_screen.dart';
+import 'package:app_lma/screens/cabinet/add/material_type_screen.dart';
 import 'package:app_lma/widgets/square_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class RegistrationScreen extends StatefulWidget {
-  const RegistrationScreen({Key? key}) : super(key: key);
+class MaterialLMAIdScreen extends StatefulWidget {
+  final String CAS;
+  final String name;
+  const MaterialLMAIdScreen({
+    Key? key,
+    required this.CAS,
+    required this.name,
+  }) : super(key: key);
 
   @override
-  State<RegistrationScreen> createState() => _RegistrationScreenState();
+  State<MaterialLMAIdScreen> createState() => _MaterialLMAIdScreenState();
 }
 
-class _RegistrationScreenState extends State<RegistrationScreen> {
+class _MaterialLMAIdScreenState extends State<MaterialLMAIdScreen> {
   late TextEditingController _controller;
 
   @override
@@ -56,9 +62,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             Column(
               children: const [
                 Padding(
-                  padding: EdgeInsets.only(left: 24, top: 24),
+                  padding: EdgeInsets.only(left: 24, top: 24, right: 24),
                   child: Text(
-                    'Nova Conta',
+                    'Qual o LMA ID da substância?',
                     style: TextStyle(
                       color: Colors.black,
                       fontFamily: 'Roboto',
@@ -69,43 +75,25 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 ),
               ],
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(left: 24, right: 24, bottom: 12),
-                  child: Text(
-                    'Matrícula UFSC',
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 142, 142, 147),
-                      fontFamily: 'Roboto',
-                      fontSize: 17,
-                      fontWeight: FontWeight.w400,
-                    ),
+            Padding(
+              padding: const EdgeInsets.only(left: 24, right: 24),
+              child: TextField(
+                controller: _controller,
+                autofocus: true,
+                cursorColor: const Color.fromARGB(255, 126, 205, 201),
+                style: const TextStyle(
+                  fontSize: 22,
+                ),
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'LMA ID',
+                  hintStyle: TextStyle(
+                    color: Color.fromARGB(255, 142, 142, 147),
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 24, right: 24),
-                  child: TextField(
-                    controller: _controller,
-                    autofocus: true,
-                    cursorColor: const Color.fromARGB(255, 126, 205, 201),
-                    style: const TextStyle(
-                      fontSize: 22,
-                    ),
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Minha matrícula UFSC',
-                      hintStyle: TextStyle(
-                        color: Color.fromARGB(255, 142, 142, 147),
-                        fontFamily: 'Roboto',
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
             SquareButton(
               label: 'Continuar',
@@ -113,13 +101,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => EmailScreen(
-                      registration: _controller.text,
+                    builder: (context) => MaterialTypeScreen(
+                      CAS: widget.CAS,
+                      name: widget.name,
+                      LMAId: _controller.text,
                     ),
                   ),
                 );
               },
-              backgroundColor: const Color.fromARGB(255, 126, 205, 201),
+              backgroundColor: const Color.fromARGB(255, 93, 153, 150),
             ),
           ],
         ),

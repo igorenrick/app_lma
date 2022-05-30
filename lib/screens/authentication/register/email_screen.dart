@@ -103,7 +103,7 @@ class _EmailScreenState extends State<EmailScreen> {
                       hintText: 'Meu email',
                       hintStyle: TextStyle(
                         color: Color.fromARGB(255, 142, 142, 147),
-                        fontFamily: 'Rubik',
+                        fontFamily: 'Roboto',
                         fontWeight: FontWeight.w400,
                       ),
                     ),

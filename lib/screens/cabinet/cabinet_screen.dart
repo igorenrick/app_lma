@@ -1,4 +1,5 @@
 import 'package:app_lma/models/chemical_material.dart';
+import 'package:app_lma/screens/cabinet/add/material_cas_screen.dart';
 import 'package:app_lma/widgets/action_bar.dart';
 import 'package:app_lma/widgets/action_bar_button.dart';
 import 'package:app_lma/widgets/cabinet_card.dart';
@@ -15,12 +16,7 @@ class CabinetScreen extends StatefulWidget {
 }
 
 class _CabinetScreenState extends State<CabinetScreen> {
-  List<ActionBarButton> actions = [
-    ActionBarButton(
-      label: 'Adicionar',
-      onPressed: () {},
-    ),
-  ];
+  List<ActionBarButton> actions = [];
 
   List<Widget> feed = [
     const HeaderSection(
@@ -43,6 +39,20 @@ class _CabinetScreenState extends State<CabinetScreen> {
   }
 
   void _buildFeed() async {
+    actions.add(
+      ActionBarButton(
+        label: 'Adicionar',
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const MaterialCASScreen(),
+            ),
+          );
+        },
+      ),
+    );
+
     feed.add(
       ActionBar(
         actions: actions,

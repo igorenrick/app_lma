@@ -105,7 +105,7 @@ class _NameScreenState extends State<NameScreen> {
                       hintText: 'Meu nome',
                       hintStyle: TextStyle(
                         color: Color.fromARGB(255, 142, 142, 147),
-                        fontFamily: 'Rubik',
+                        fontFamily: 'Roboto',
                         fontWeight: FontWeight.w400,
                       ),
                     ),

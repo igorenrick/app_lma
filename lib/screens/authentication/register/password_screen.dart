@@ -168,7 +168,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
                       hintText: 'Minha senha',
                       hintStyle: TextStyle(
                         color: Color.fromARGB(255, 142, 142, 147),
-                        fontFamily: 'Rubik',
+                        fontFamily: 'Roboto',
                         fontWeight: FontWeight.w400,
                       ),
                     ),
