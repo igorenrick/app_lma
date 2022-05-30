@@ -1,6 +1,8 @@
-import 'package:app_lma/screens/dashboard_screen.dart';
+import 'package:app_lma/services/auth_service.dart';
+import 'package:app_lma/widgets/auth_check.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -8,7 +10,14 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const LMAApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => AuthService()),
+      ],
+      child: const LMAApp(),
+    ),
+  );
 }
 
 class LMAApp extends StatelessWidget {
@@ -21,7 +30,7 @@ class LMAApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
-      home: const DashboardScreen(),
+      home: const AuthCheck(),
     );
   }
 }

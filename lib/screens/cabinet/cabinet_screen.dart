@@ -52,7 +52,9 @@ class _CabinetScreenState extends State<CabinetScreen> {
 
     await _getMaterial().then((materials) {
       for (ChemicalMaterial material in materials) {
-        feed.add(CabinetCard(chemicalMaterial: material));
+        setState(() {
+          feed.add(CabinetCard(chemicalMaterial: material));
+        });
       }
     });
   }

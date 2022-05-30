@@ -1,3 +1,4 @@
+import 'package:app_lma/screens/authentication/register/verify_email_screen.dart';
 import 'package:app_lma/screens/cabinet/cabinet_screen.dart';
 import 'package:app_lma/screens/dashboard_screen.dart';
 import 'package:app_lma/screens/record/record_screen.dart';
@@ -8,7 +9,8 @@ class Routes {
       <String, WidgetBuilder>{
     '/dashboard': (_) => const DashboardScreen(),
     '/record': (_) => const RecordScreen(),
-    '/cabinet': (_) => const CabinetScreen()
+    '/cabinet': (_) => const CabinetScreen(),
+    '/verifyemail': (_) => const VerifyEmailScreen(),
   };
 
   static String initial = '/dashboard';

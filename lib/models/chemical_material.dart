@@ -30,7 +30,7 @@ class ChemicalMaterial {
   ChemicalMaterial.fromJson(Map<String, dynamic> json)
       : id = json['id'].toString() == 'null' ? '' : json['id'],
         name = json['name'].toString() == 'null' ? '' : json['name'],
-        CAS = json['CAS'].toString() == 'null' ? '' : json['iCAS'],
+        CAS = json['CAS'].toString() == 'null' ? '' : json['CAS'],
         type = json['type'].toString() == 'null' ? '' : json['type'],
         LMAId = json['LMAId'].toString() == 'null' ? '' : json['LMAId'],
         supervised = json['supervised'].toString() == 'null'
@@ -38,17 +38,16 @@ class ChemicalMaterial {
             : json['supervised'],
         registrationDate = json['registrationDate'].toString() == 'null'
             ? Timestamp(0, 0)
-            : Timestamp(json['calloutDate']['_seconds'],
-                json['calloutDate']['_nanoseconds']),
+            : json['registrationDate'],
         initialAmount = json['initialAmount'].toString() == 'null'
             ? 0.0
-            : json['initialAmount'],
+            : json['initialAmount'].toDouble(),
         currentAmount = json['currentAmount'].toString() == 'null'
             ? 0.0
-            : json['currentAmount'],
+            : json['currentAmount'].toDouble(),
         buyNotification = json['buyNotification'].toString() == 'null'
             ? 0.0
-            : json['buyNotification'],
+            : json['buyNotification'].toDouble(),
         suplier = json['suplier'].toString() == 'null' ? '' : json['suplier'];
 
   String getUnity() {

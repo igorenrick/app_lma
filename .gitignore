@@ -49,3 +49,4 @@ app.*.map.json
 # Other
 **/ios/firebase_app_id_file.json
 **/android/app/google-services.json
+**/macos/firebase_app_id_file.json

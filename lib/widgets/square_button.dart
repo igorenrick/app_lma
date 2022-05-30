@@ -18,6 +18,7 @@ class SquareButton extends StatelessWidget {
   final IconData? icon;
   final bool? bottom;
   final SquareButtonTheme? theme;
+  final Color? labelColor;
   const SquareButton({
     Key? key,
     required this.label,
@@ -26,6 +27,7 @@ class SquareButton extends StatelessWidget {
     this.icon,
     this.bottom,
     this.theme,
+    this.labelColor,
   }) : super(key: key);
 
   EdgeInsets _getPadding(bool bottom) {
@@ -58,11 +60,12 @@ class SquareButton extends StatelessWidget {
           icon != null
               ? Icon(
                   icon,
-                  color: theme != null
-                      ? theme!.type() == 'light'
-                          ? backgroundColor
-                          : Colors.white
-                      : Colors.white,
+                  color: labelColor ??
+                      (theme != null
+                          ? theme!.type() == 'light'
+                              ? backgroundColor
+                              : Colors.white
+                          : Colors.white),
                   size: 24,
                 )
               : const SizedBox(
@@ -71,11 +74,12 @@ class SquareButton extends StatelessWidget {
           Text(
             label,
             style: TextStyle(
-              color: theme != null
-                  ? theme!.type() == 'light'
-                      ? backgroundColor
-                      : Colors.white
-                  : Colors.white,
+              color: labelColor ??
+                  (theme != null
+                      ? theme!.type() == 'light'
+                          ? backgroundColor
+                          : Colors.white
+                      : Colors.white),
               fontFamily: 'Roboto',
               fontSize: 16,
               fontWeight: FontWeight.w500,
