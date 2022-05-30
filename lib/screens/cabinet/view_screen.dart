@@ -1,8 +1,13 @@
+import 'package:app_lma/models/chemical_material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class ViewScreen extends StatelessWidget {
-  const ViewScreen({Key? key}) : super(key: key);
+  final ChemicalMaterial? material;
+  const ViewScreen({
+    Key? key,
+    this.material,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,6 @@
 import 'package:app_lma/models/chemical_material.dart';
 import 'package:app_lma/screens/cabinet/add/material_cas_screen.dart';
+import 'package:app_lma/screens/cabinet/view_screen.dart';
 import 'package:app_lma/widgets/action_bar.dart';
 import 'package:app_lma/widgets/action_bar_button.dart';
 import 'package:app_lma/widgets/chemical_material_card.dart';
@@ -65,7 +66,14 @@ class _CabinetScreenState extends State<CabinetScreen> {
         setState(() {
           feed.add(ChemicalMaterialCard(
             chemicalMaterial: material,
-            onPress: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ViewScreen(material: material),
+                ),
+              );
+            },
           ));
         });
       }

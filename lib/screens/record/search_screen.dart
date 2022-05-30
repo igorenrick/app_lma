@@ -1,4 +1,5 @@
 import 'package:app_lma/models/chemical_material.dart';
+import 'package:app_lma/screens/record/option_screen.dart';
 import 'package:app_lma/widgets/chemical_material_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,14 @@ class _SearchScreenState extends State<SearchScreen> {
         setState(() {
           list.add(ChemicalMaterialCard(
             chemicalMaterial: material,
-            onPress: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => OptionScreen(material: material),
+                ),
+              );
+            },
           ));
         });
       }
@@ -128,14 +136,28 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
             ),
             Flexible(
-              child: ListView.builder(
-                physics: const ClampingScrollPhysics(),
-                scrollDirection: Axis.vertical,
-                itemCount: foundList.length,
-                itemBuilder: (context, index) {
-                  return foundList[index];
-                },
-              ),
+              child: foundList.isNotEmpty
+                  ? ListView.builder(
+                      physics: const ClampingScrollPhysics(),
+                      scrollDirection: Axis.vertical,
+                      itemCount: foundList.length,
+                      itemBuilder: (context, index) {
+                        return foundList[index];
+                      },
+                    )
+                  : Padding(
+                      padding: const EdgeInsets.fromLTRB(48, 64, 48, 0),
+                      child: Text(
+                        'Nenhuma substância encontrada com o termo ${_controller.text}',
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Color.fromARGB(255, 142, 142, 147),
+                          fontFamily: 'Roboto',
+                          fontSize: 17,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
             ),
           ],
         ),

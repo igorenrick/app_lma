@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 
 class ChemicalMaterialCard extends StatelessWidget {
   final ChemicalMaterial chemicalMaterial;
-  final VoidCallback onPress;
+  final VoidCallback onPressed;
   const ChemicalMaterialCard({
     Key? key,
     required this.chemicalMaterial,
-    required this.onPress,
+    required this.onPressed,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         primary: Colors.white,
         elevation: 0,
