@@ -37,6 +37,7 @@ class AuthService extends ChangeNotifier {
           .get()
           .then((event) {
         newUser = LMAUser.fromJson(event.docs[0].data());
+        newUser.id = event.docs[0].id;
       });
       lmaUser = newUser;
     } else {

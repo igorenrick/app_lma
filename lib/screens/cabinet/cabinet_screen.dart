@@ -2,7 +2,7 @@ import 'package:app_lma/models/chemical_material.dart';
 import 'package:app_lma/screens/cabinet/add/material_cas_screen.dart';
 import 'package:app_lma/widgets/action_bar.dart';
 import 'package:app_lma/widgets/action_bar_button.dart';
-import 'package:app_lma/widgets/cabinet_card.dart';
+import 'package:app_lma/widgets/chemical_material_card.dart';
 import 'package:app_lma/widgets/header_section.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +63,10 @@ class _CabinetScreenState extends State<CabinetScreen> {
     await _getMaterial().then((materials) {
       for (ChemicalMaterial material in materials) {
         setState(() {
-          feed.add(CabinetCard(chemicalMaterial: material));
+          feed.add(ChemicalMaterialCard(
+            chemicalMaterial: material,
+            onPress: () {},
+          ));
         });
       }
     });

@@ -1,11 +1,13 @@
 import 'package:app_lma/models/chemical_material.dart';
 import 'package:flutter/material.dart';
 
-class CabinetCard extends StatelessWidget {
+class ChemicalMaterialCard extends StatelessWidget {
   final ChemicalMaterial chemicalMaterial;
-  const CabinetCard({
+  final VoidCallback onPress;
+  const ChemicalMaterialCard({
     Key? key,
     required this.chemicalMaterial,
+    required this.onPress,
   }) : super(key: key);
 
   @override

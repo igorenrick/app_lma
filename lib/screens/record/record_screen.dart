@@ -1,4 +1,5 @@
 import 'package:app_lma/screens/record/scanner_screen.dart';
+import 'package:app_lma/screens/record/search_screen.dart';
 import 'package:app_lma/widgets/action_bar.dart';
 import 'package:app_lma/widgets/action_bar_button.dart';
 import 'package:app_lma/widgets/header_section.dart';
@@ -24,7 +25,14 @@ class RecordScreen extends StatelessWidget {
       ),
       ActionBarButton(
         label: 'Buscar',
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const SearchScreen(),
+            ),
+          );
+        },
       ),
     ];
     List<Widget> feed = [
