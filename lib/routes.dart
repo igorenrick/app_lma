@@ -10,7 +10,9 @@ class Routes {
       <String, WidgetBuilder>{
     '/': (_) => const HomeScreen(),
     '/dashboard': (_) => const DashboardScreen(),
-    '/record': (_) => const RecordScreen(),
+    '/record': (_) => const RecordScreen(
+          user: null,
+        ),
     '/cabinet': (_) => const CabinetScreen(),
     '/verifyemail': (_) => const VerifyEmailScreen(),
   };

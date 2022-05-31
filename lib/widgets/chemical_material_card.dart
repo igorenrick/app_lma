@@ -1,5 +1,6 @@
 import 'package:app_lma/models/chemical_material.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image/flutter_image.dart';
 
 class ChemicalMaterialCard extends StatelessWidget {
   final ChemicalMaterial chemicalMaterial;
@@ -38,8 +39,9 @@ class ChemicalMaterialCard extends StatelessWidget {
             SizedBox(
               width: 60,
               height: 60,
-              child: Image.network(
-                'https://chem.nlm.nih.gov/chemidplus/structure/${chemicalMaterial.CAS}',
+              child: Image(
+                image: NetworkImageWithRetry(
+                    'https://chem.nlm.nih.gov/chemidplus/structure/${chemicalMaterial.CAS}'),
                 loadingBuilder: (context, child, loadingProgress) {
                   if (loadingProgress == null) {
                     return child;

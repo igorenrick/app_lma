@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 
 class ChemicalMaterial {
   late String id;
@@ -59,5 +61,13 @@ class ChemicalMaterial {
       default:
         return 'un';
     }
+  }
+
+  Future<String> formatDate() async {
+    String date = '';
+    await initializeDateFormatting('pt_BR', null).then((_) {
+      date = DateFormat.yMMMMd('pt_BR').format(registrationDate.toDate());
+    });
+    return date;
   }
 }

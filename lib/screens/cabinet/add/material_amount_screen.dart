@@ -109,7 +109,9 @@ class _MaterialAmountScreenState extends State<MaterialAmountScreen> {
                     children: <Widget>[
                       TextField(
                         controller: _initialAmountController,
-                        keyboardType: TextInputType.number,
+                        keyboardType: const TextInputType.numberWithOptions(
+                          decimal: true,
+                        ),
                         autofocus: true,
                         cursorColor: const Color.fromARGB(255, 126, 205, 201),
                         style: const TextStyle(
@@ -162,7 +164,9 @@ class _MaterialAmountScreenState extends State<MaterialAmountScreen> {
                     children: <Widget>[
                       TextField(
                         controller: _buyNotificationController,
-                        keyboardType: TextInputType.number,
+                        keyboardType: const TextInputType.numberWithOptions(
+                          decimal: true,
+                        ),
                         autofocus: true,
                         cursorColor: const Color.fromARGB(255, 126, 205, 201),
                         style: const TextStyle(

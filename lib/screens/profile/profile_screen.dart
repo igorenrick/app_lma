@@ -22,7 +22,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Login efetuado com sucesso!'),
+          content: Text('Logout efetuado com sucesso!'),
         ),
       );
 

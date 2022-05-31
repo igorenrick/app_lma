@@ -18,9 +18,24 @@ class AuthService extends ChangeNotifier {
     _authCheck();
   }
 
+  Future<LMAUser> _getLMAUser(String uid) async {
+    LMAUser newUser = LMAUser('', '', '', '', '', false, '', Timestamp(0, 0));
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    await db
+        .collection('users')
+        .where('authId', isEqualTo: uid)
+        .get()
+        .then((event) {
+      newUser = LMAUser.fromJson(event.docs[0].data());
+      newUser.id = event.docs[0].id;
+    });
+    return newUser;
+  }
+
   _authCheck() {
-    _auth.authStateChanges().listen((User? u) {
+    _auth.authStateChanges().listen((User? u) async {
       user = (u == null) ? null : u;
+      lmaUser = (u == null) ? null : await _getLMAUser(_auth.currentUser!.uid);
       isLoading = false;
       notifyListeners();
     });
@@ -29,21 +44,12 @@ class AuthService extends ChangeNotifier {
   _getUser() async {
     user = _auth.currentUser;
     if (_auth.currentUser.toString() != 'null') {
-      LMAUser newUser = LMAUser('', '', '', '', '', false, '', Timestamp(0, 0));
-      FirebaseFirestore db = FirebaseFirestore.instance;
-      await db
-          .collection('users')
-          .where('authId', isEqualTo: _auth.currentUser!.uid)
-          .get()
-          .then((event) {
-        newUser = LMAUser.fromJson(event.docs[0].data());
-        newUser.id = event.docs[0].id;
-      });
-      lmaUser = newUser;
+      lmaUser = await _getLMAUser(_auth.currentUser!.uid);
+      notifyListeners();
     } else {
       lmaUser = null;
+      notifyListeners();
     }
-    notifyListeners();
   }
 
   register(String email, String password) async {

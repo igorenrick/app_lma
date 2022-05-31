@@ -71,6 +71,13 @@ class SquareButton extends StatelessWidget {
               : const SizedBox(
                   width: 0,
                 ),
+          icon != null
+              ? const SizedBox(
+                  width: 6,
+                )
+              : const SizedBox(
+                  width: 0,
+                ),
           Text(
             label,
             style: TextStyle(

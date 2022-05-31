@@ -1,25 +1,25 @@
 import 'package:app_lma/models/chemical_material.dart';
-import 'package:app_lma/screens/record/replace_confirmation_screen.dart';
+import 'package:app_lma/screens/record/withdrawn_confirmation_screen.dart';
 import 'package:app_lma/services/auth_service.dart';
+import 'package:app_lma/widgets/square_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:app_lma/widgets/square_button.dart';
 import 'package:intl/intl.dart';
 import 'package:date_format/date_format.dart';
 import 'package:provider/provider.dart';
 
-class ReplaceScreen extends StatefulWidget {
+class WithdrawnScreen extends StatefulWidget {
   final ChemicalMaterial material;
-  const ReplaceScreen({
+  const WithdrawnScreen({
     Key? key,
     required this.material,
   }) : super(key: key);
 
   @override
-  State<ReplaceScreen> createState() => _ReplaceScreenState();
+  State<WithdrawnScreen> createState() => _WithdrawnScreenState();
 }
 
-class _ReplaceScreenState extends State<ReplaceScreen> {
+class _WithdrawnScreenState extends State<WithdrawnScreen> {
   late TextEditingController _amountController;
   final TextEditingController _dateController = TextEditingController();
   final TextEditingController _timeController = TextEditingController();
@@ -118,7 +118,7 @@ class _ReplaceScreenState extends State<ReplaceScreen> {
             const Padding(
               padding: EdgeInsets.only(left: 24, top: 24, right: 24),
               child: Text(
-                'Qual a quantidade que será reposta?',
+                'Qual a quantidade utilizada?',
                 style: TextStyle(
                   color: Colors.black,
                   fontFamily: 'Roboto',
@@ -135,7 +135,7 @@ class _ReplaceScreenState extends State<ReplaceScreen> {
                   Padding(
                     padding: const EdgeInsets.only(left: 24, right: 24),
                     child: Text(
-                      'Quantidade já disponível ${widget.material.currentAmount.toString()} ${widget.material.getUnity()}',
+                      'Quantidade disponível ${widget.material.currentAmount.toString()} ${widget.material.getUnity()}',
                       style: const TextStyle(
                         color: Color.fromARGB(255, 142, 142, 147),
                         fontFamily: 'Roboto',
@@ -192,7 +192,7 @@ class _ReplaceScreenState extends State<ReplaceScreen> {
                   const Padding(
                     padding: EdgeInsets.only(left: 24, right: 24),
                     child: Text(
-                      'Quando foi reposto?',
+                      'Quando foi utilizado?',
                       style: TextStyle(
                         color: Color.fromARGB(255, 142, 142, 147),
                         fontFamily: 'Roboto',
@@ -254,12 +254,12 @@ class _ReplaceScreenState extends State<ReplaceScreen> {
               ),
             ),
             SquareButton(
-              label: 'Repor',
+              label: 'Retirar',
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ReplaceConfirmationScreen(
+                    builder: (context) => WithDrawnConfirmationScreen(
                       material: widget.material,
                       date: actualDate,
                       amount: (_amountController.text.isNotEmpty
@@ -273,7 +273,7 @@ class _ReplaceScreenState extends State<ReplaceScreen> {
                 );
               },
               backgroundColor: const Color.fromARGB(255, 19, 62, 59),
-              icon: Icons.arrow_circle_down,
+              icon: Icons.arrow_circle_up,
             ),
           ],
         ),
